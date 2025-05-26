@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Stellar Tree Management</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2a2a2a;      
+            --accent-color: #8cc63f;       
+            --secondary-color: #5a5a5a;   
+            --bg-color: #f8f9fa;           
+            --text-color: #ffffff;
+            --light-gray: #f8fafc;
+            --border-color: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Navigation - Matching index.html */
+        nav {
+            background: #2a2a2a;
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a.active {
+            color: var(--accent-color);
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-scrolled {
+            background: rgba(42, 42, 42, 0.884); 
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            background-color: #404040d9;
+            padding: 8px;
+            object-fit: cover;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 8rem 0 4rem;
+            background: linear-gradient(135deg, var(--light-gray) 0%, #ffffff 100%);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .page-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Projects Section */
+        .projects-section {
+            padding: 6rem 0;
+            background: var(--light-gray);
+        }
+
+        .projects-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-color);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: var(--secondary-color);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            overflow: hidden;
+        }
+
+        .project-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.875rem;
+            color: var(--secondary-color);
+        }
+
+        .project-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-meta i {
+            color: var(--accent-color);
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 1100px;
+            width: 90%;
+            max-height: 90vh;
+            overflow: hidden;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .modal-image-section {
+            position: relative;
+            height: 500px;
+            background: var(--light-gray);
+        }
+
+        .carousel {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .carousel-item.active {
+            opacity: 1;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45px;
+            height: 45px;
+            background: rgba(42, 42, 42, 0.8);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 5;
+            opacity: 0;
+        }
+
+        .carousel:hover .carousel-control {
+            opacity: 1;
+        }
+
+        .carousel-control:hover {
+            background: var(--accent-color);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-control i {
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .carousel-control.prev {
+            left: 15px;
+        }
+
+        .carousel-control.next {
+            right: 15px;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 5;
+        }
+
+        .carousel-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-indicator.active {
+            background: var(--accent-color);
+            transform: scale(1.2);
+        }
+
+        .modal-text-section {
+            padding: 3rem;
+            overflow-y: auto;
+            max-height: 500px;
+        }
+
+        .modal-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .modal-description {
+            color: var(--secondary-color);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .modal-details {
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background: var(--light-gray);
+            border-radius: 8px;
+        }
+
+        .detail-item i {
+            color: var(--accent-color);
+            width: 20px;
+        }
+
+        .detail-item strong {
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+        }
+
+        /* Footer - Matching index.html */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-info h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-item i {
+            color: var(--accent-color);
+            width: 20px;
+        }
+
+        .contact-item a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                grid-template-columns: 1fr;
+                margin: 1rem;
+            }
+
+            .modal-image-section {
+                height: 300px;
+            }
+
+            .modal-text-section {
+                padding: 2rem;
+            }
+
+            .project-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                gap: 1.5rem;
+            }
+
+            .project-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <img src="images/logo.png" alt="Stellar Tree Management Logo" class="logo">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="contacts.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="header-container">
+            <h1 class="page-title">Our Projects</h1>
+            <p class="page-subtitle">
+                Showcasing our expertise in professional tree removal, trimming, and maintenance services across Calgary and surrounding areas.
+            </p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects-section">
+        <div class="projects-container">
+            <div class="projects-grid">
+                <!-- Project 1: Large Oak Tree Removal -->
+                <div class="project-card" 
+                     data-title="Major Forest Cleaning"
+                     data-description="Major forest cleaning, this portion of a landscaped front yard had become heavily over grow by the shrubs, the client wanted the shrubs cut down to restore the intended look, and to allow the shrubs to grow back smaller and more vibrant."
+                     data-duration="5 Hours"
+                     data-location="Northwest Calgary"
+                     data-services="Emergency tree removal, Rigging & crane work, Stump grinding, Site cleanup"
+                     data-images='[
+                         "images/projects/project_1/image_1.jpg",
+                         "images/oak2.jpg",
+                         "images/oak3.jpg"
+                     ]'>
+                    <img src="images/projects/project_1/image_1.jpg" alt="Oak Tree Removal Project" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Major Forest Cleaning</h3>
+                        <p class="project-description">
+                          Major forest cleaning, this portion of a landscaped front yard had become heavily over grow by the shrubs, the client wanted the shrubs cut down to restore the intended look, and to allow the shrubs to grow back smaller and more vibrant
+                        </p>
+                        <div class="project-meta">
+                            <span><i class="fas fa-calendar"></i> 5 Hours</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Northwest Calgary</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Commercial Property Maintenance -->
+                <div class="project-card" 
+                     data-title="60-Year-Old Apple Tree"
+                     data-description="60 year old apple left unpruned for almost 10 years, before and after."
+                     data-duration="1 week"
+                     data-location="Downtown Calgary"
+                     data-services="Tree pruning & trimming, Selective tree removal, Health assessment, Maintenance planning"
+                     data-images='[
+                         "images/projects/project_2/image_1.jpg",
+                         "images/commercial2.jpg"
+                     ]'>
+                    <img src="images/projects/project_2/image_1.jpg" alt="Commercial Tree Maintenance" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">60-Year-Old Apple Tree</h3>
+                        <p class="project-description">
+                          60 year old apple left unpruned for almost 10 years, before and after.
+                        </p>
+                        <div class="project-meta">
+                            <span><i class="fas fa-calendar"></i> 5 Hours</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Calgary</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3:  -->
+                <div class="project-card" 
+                     data-title="Residential Landscape Enhancement"
+                     data-description="Complete transformation of a residential property's landscape through strategic tree removal and expert pruning."
+                     data-duration="2 days"
+                     data-location="Kensington"
+                     data-services="Selective tree removal, Crown thinning, Stump grinding, Landscape consultation"
+                     data-images='[
+                         "images/landscape1.jpg"
+                     ]'>
+                    <img src="images/landscape1.jpg" alt="Landscape Enhancement Project" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Residential Landscape Enhancement</h3>
+                        <p class="project-description">
+                            Strategic removal of overgrown spruce trees and expert pruning to transform property's landscape, improving natural light and curb appeal.
+                        </p>
+                        <div class="project-meta">
+                            <span><i class="fas fa-calendar"></i> 2 days</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Kensington</span>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+    </section>
+
+    <div class="modal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal"><i class="fas fa-times"></i></button>
+            <div class="modal-image-section">
+                <div class="carousel">
+                    <div class="carousel-inner">
+                    </div>
+                    <button class="carousel-control prev" aria-label="Previous slide">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-control next" aria-label="Next slide">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="carousel-indicators">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-text-section">
+                <h2 class="modal-title"></h2>
+                <p class="modal-description"></p>
+                <div class="modal-details">
+                    <div class="detail-item">
+                        <i class="fas fa-calendar"></i>
+                        <span><strong>Duration:</strong> <span class="detail-duration"></span></span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span><strong>Location:</strong> <span class="detail-location"></span></span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-tools"></i>
+                        <span><strong>Services:</strong> <span class="detail-services"></span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Stellar Tree Management</h3>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 1rem;">
+                        Professional tree care services you can trust. Serving Calgary and surrounding areas with excellence.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-info">
+                    <h3>Contact Info</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>1932 9a Ave NE, Calgary, Alberta</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:2505511021">(250) 551-1021</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:stellartmanagement@outlook.com">stellartmanagement@outlook.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Stellar Tree Management. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Modal & Carousel functionality
+        const projectCards = document.querySelectorAll('.project-card');
+        const modal = document.querySelector('.modal');
+        const closeModalBtn = document.querySelector('.close-modal');
+        const modalTitle = document.querySelector('.modal-title');
+        const modalDescription = document.querySelector('.modal-description');
+        const carouselInner = document.querySelector('.carousel-inner');
+        const carouselIndicators = document.querySelector('.carousel-indicators');
+        const prevButton = document.querySelector('.carousel-control.prev');
+        const nextButton = document.querySelector('.carousel-control.next');
+        const detailDuration = document.querySelector('.detail-duration');
+        const detailLocation = document.querySelector('.detail-location');
+        const detailServices = document.querySelector('.detail-services');
+
+        let currentSlide = 0;
+        let images = [];
+
+        // Build carousel items & indicators
+        function createCarouselItems(imageArray) {
+            carouselInner.innerHTML = '';
+            carouselIndicators.innerHTML = '';
+
+            imageArray.forEach((src, idx) => {
+                // Carousel Item
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('carousel-item');
+                if (idx === 0) itemDiv.classList.add('active');
+
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = `Project image ${idx + 1}`;
+                itemDiv.appendChild(img);
+                carouselInner.appendChild(itemDiv);
+
+                // Indicator
+                const indicator = document.createElement('div');
+                indicator.classList.add('carousel-indicator');
+                if (idx === 0) indicator.classList.add('active');
+                indicator.dataset.index = idx;
+                carouselIndicators.appendChild(indicator);
+
+                // Clicking an indicator jumps to that slide
+                indicator.addEventListener('click', () => {
+                    goToSlide(idx);
+                });
+            });
+        }
+
+        // Show a specific slide by index
+        function goToSlide(index) {
+            const items = document.querySelectorAll('.carousel-item');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+
+            items.forEach((item, idx) => {
+                item.classList.toggle('active', idx === index);
+            });
+
+            indicators.forEach((ind, idx) => {
+                ind.classList.toggle('active', idx === index);
+            });
+
+            currentSlide = index;
+        }
+
+        // Show next slide
+        function showNextSlide() {
+            const total = images.length;
+            let nextIndex = (currentSlide + 1) % total;
+            goToSlide(nextIndex);
+        }
+
+        // Show previous slide
+        function showPrevSlide() {
+            const total = images.length;
+            let prevIndex = (currentSlide - 1 + total) % total;
+            goToSlide(prevIndex);
+        }
+
+        // Open modal & populate content
+        function openModal(card) {
+            // Parse data attributes
+            const title = card.dataset.title;
+            const description = card.dataset.description;
+            const duration = card.dataset.duration;
+            const location = card.dataset.location;
+            const services = card.dataset.services;
+            images = JSON.parse(card.dataset.images);
+
+            // Populate text
+            modalTitle.textContent = title;
+            modalDescription.textContent = description;
+            detailDuration.textContent = duration;
+            detailLocation.textContent = location;
+            detailServices.textContent = services;
+
+            // Build carousel
+            createCarouselItems(images);
+            currentSlide = 0;
+
+            // Show modal
+            modal.classList.add('active');
+        }
+
+        // Close modal
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        // Click any card to open its modal
+        projectCards.forEach(card => {
+            card.addEventListener('click', () => openModal(card));
+        });
+
+        // Close modal when clicking '×'
+        closeModalBtn.addEventListener('click', closeModal);
+
+        // Close modal when clicking outside modal-content
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Next/Prev buttons
+        nextButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showNextSlide();
+        });
+
+        prevButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showPrevSlide();
+        });
+
+        // Keyboard navigation (Esc to close, arrow keys to switch)
+        document.addEventListener('keydown', (e) => {
+            if (!modal.classList.contains('active')) return;
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+            if (e.key === 'ArrowRight') {
+                showNextSlide();
+            }
+            if (e.key === 'ArrowLeft') {
+                showPrevSlide();
+            }
+        });
+    </script>
+</body>
+</html>
