@@ -710,34 +710,6 @@
             });
         });
 
-        (function() {
-            emailjs.init("gbNNJl7woug9ECw8L");
-            
-            document.getElementById('contactForm').addEventListener('submit', function(event) {
-                event.preventDefault();
-                const btn = this.querySelector('button');
-                const originalText = btn.innerHTML;
-                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-                btn.disabled = true;
-                
-                emailjs.sendForm('service_l5sr63u', 'template_wd8wtcm', this)
-                    .then(function() {
-                        btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-                        setTimeout(() => {
-                            btn.innerHTML = originalText;
-                            btn.disabled = false;
-                        }, 3000);
-                        document.getElementById('contactForm').reset();
-                    }, function(error) {
-                        console.log('FAILED...', error);
-                        btn.innerHTML = '<i class="fas fa-times"></i> Error Sending';
-                        setTimeout(() => {
-                            btn.innerHTML = originalText;
-                            btn.disabled = false;
-                        }, 3000);
-                    });
-            });
-        })();
     </script>
 </body>
 </html>
