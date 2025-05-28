@@ -117,15 +117,37 @@
       box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
     }
 
-    /* CONTACT HERO (REDUCED / THINNER) */
+    /* Mobile Menu Toggle */
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 8px;
+    }
+
+    .mobile-menu-toggle:hover {
+      color: var(--accent-color);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-menu-toggle i {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* CONTACT HERO */
     .contact-hero {
-      padding: 3rem 0;          /* reduced vertical padding */
+      padding: 4rem 0;
       display: flex;
       align-items: center;
       justify-content: center;
       background: linear-gradient(135deg, var(--light-gray) 0%, #ffffff 100%);
       position: relative;
-      margin-top: 4rem;       /* offset for fixed nav */
+      margin-top: 4rem;
     }
 
     .contact-hero-container {
@@ -138,23 +160,8 @@
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;             /* tighter gap */
-      padding: 1.5rem 2rem;    /* thinner padding */
-    }
-
-    @media (max-width: 768px) {
-      .contact-hero-container {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        text-align: center;
-        padding: 1.5rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .contact-hero-container {
-        padding: 1rem;
-      }
+      gap: 3rem;
+      padding: 2rem 2.5rem;
     }
 
     /* LEFT: INFO & SOCIAL */
@@ -169,76 +176,76 @@
       gap: 0.5rem;
       background: var(--accent-color);
       color: var(--text-light);
-      padding: 0.4rem 0.8rem;   /* slightly smaller */
+      padding: 0.5rem 1rem;
       border-radius: 50px;
-      font-size: 0.85rem;
+      font-size: 0.875rem;
       font-weight: 500;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.5rem;
     }
 
     .contact-title {
       font-family: "Poppins", sans-serif;
-      font-size: 2.5rem;         /* reduced from 3rem */
+      font-size: 2.5rem;
       line-height: 1.2;
       color: var(--text-light);
-      margin-bottom: 1.2rem;     /* tighter margin */
+      margin-bottom: 1.5rem;
       font-weight: 700;
     }
 
     .contact-description {
-      font-size: 1.05rem;       /* slightly smaller */
+      font-size: 1.1rem;
       color: var(--text-light);
-      margin-bottom: 1.8rem;    /* reduced bottom space */
+      margin-bottom: 2rem;
       line-height: 1.6;
       opacity: 0.9;
     }
 
     .contact-info-grid {
       display: grid;
-      gap: 1.2rem;              /* tighter gap */
+      gap: 1.5rem;
       margin-bottom: 2rem;
     }
 
     .contact-info-card {
       background: rgba(255, 255, 255, 0.1);
-      padding: 1rem;            /* reduced padding */
-      border-radius: 10px;
+      padding: 1.25rem;
+      border-radius: 12px;
       display: flex;
       align-items: center;
-      gap: 0.8rem;              /* slightly smaller gap */
+      gap: 1rem;
       transition: all 0.3s ease;
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .contact-info-card:hover {
       background: rgba(255, 255, 255, 0.15);
-      transform: translateY(-1px); /* less movement */
+      transform: translateY(-2px);
     }
 
     .contact-icon {
-      width: 40px;              /* smaller icon box */
-      height: 40px;             /* smaller icon box */
+      width: 45px;
+      height: 45px;
       background: var(--accent-color);
-      border-radius: 10px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--text-light);
-      font-size: 1rem;          /* smaller icon size */
+      font-size: 1.1rem;
       flex-shrink: 0;
     }
 
     .contact-text {
-      font-size: 0.95rem;       /* thinner text */
+      font-size: 1rem;
       color: var(--text-light);
-      line-height: 1.4;
-      font-weight: 400;         /* regular weight */
+      line-height: 1.5;
+      font-weight: 400;
     }
 
     .contact-text a {
       color: var(--text-light);
       transition: color 0.3s ease;
-      font-weight: 400;         /* regular weight */
+      font-weight: 400;
     }
 
     .contact-text a:hover {
@@ -247,15 +254,15 @@
 
     .social-links {
       display: flex;
-      gap: 1rem;                /* kept modest gap */
-      margin-top: 1.8rem;       /* tighter top margin */
+      gap: 1rem;
+      margin-top: 2rem;
     }
 
     .social-icon {
-      width: 40px;              /* smaller social icons */
-      height: 40px;
+      width: 45px;
+      height: 45px;
       background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -266,13 +273,13 @@
 
     .social-icon:hover {
       background: var(--accent-color);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
     }
 
-    /* RIGHT: CONTACT FORM (KEPT AS-IS BUT SLIGHTLY TIGHTER) */
+    /* RIGHT: CONTACT FORM */
     .contact-form-container {
       background: var(--text-light);
-      padding: 2.5rem 2rem;      /* slightly reduced padding */
+      padding: 3rem 2.5rem;
       border-radius: 16px;
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
       border: 2px solid var(--border-color);
@@ -281,43 +288,37 @@
 
     .form-title {
       font-family: "Poppins", sans-serif;
-      font-size: 1.8rem;         /* slightly smaller */
+      font-size: 2rem;
       color: var(--text-dark);
-      margin-bottom: 0.8rem;     /* tighter margin */
+      margin-bottom: 1rem;
       font-weight: 600;
     }
 
     .form-subtitle {
       color: var(--secondary-color);
-      margin-bottom: 1.5rem;     /* reduced bottom space */
-      font-size: 1rem;           /* smaller subtitle */
-      line-height: 1.4;
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+      line-height: 1.5;
     }
 
     .contact-form {
       display: grid;
-      gap: 1.5rem;              /* modest gap */
+      gap: 1.75rem;
     }
 
     .form-group {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1rem;                /* tighter gap between inputs */
-    }
-
-    @media (max-width: 768px) {
-      .form-group {
-        grid-template-columns: 1fr;
-      }
+      gap: 1.25rem;
     }
 
     .form-input {
       width: 100%;
-      padding: 0.85rem 1.2rem;    /* slightly smaller padding */
+      padding: 1rem 1.25rem;
       border: 2px solid var(--border-color);
-      border-radius: 10px;
+      border-radius: 12px;
       background: var(--text-light);
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-family: "Inter", sans-serif;
       transition: all 0.3s ease;
       color: var(--text-dark);
@@ -331,17 +332,17 @@
 
     .form-textarea {
       grid-column: 1 / -1;
-      min-height: 120px;
+      min-height: 130px;
       resize: vertical;
-      padding-top: 0.85rem;      /* align with inputs */
+      padding-top: 1rem;
     }
 
     .btn-primary {
       background: var(--accent-color);
       color: var(--text-light);
-      padding: 0.9rem 1.8rem;     /* slightly reduced */
+      padding: 1rem 2rem;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       font-weight: 600;
       display: inline-flex;
       align-items: center;
@@ -350,8 +351,8 @@
       transition: all 0.3s ease;
       cursor: pointer;
       font-family: "Inter", sans-serif;
-      font-size: 0.95rem;
-      margin-top: 0.4rem;         /* tighter top margin */
+      font-size: 1rem;
+      margin-top: 0.5rem;
       width: fit-content;
     }
 
@@ -367,7 +368,7 @@
       transform: none;
     }
 
-    /* SERVICE HOURS SECTION (UNCHANGED) */
+    /* SERVICE HOURS SECTION */
     .service-hours {
       background: var(--primary-color);
       color: var(--text-light);
@@ -429,13 +430,7 @@
       font-size: 1rem;
     }
 
-    @media (max-width: 480px) {
-      .hours-grid {
-        gap: 1.5rem;
-      }
-    }
-
-    /* FOOTER (UNCHANGED) */
+    /* FOOTER */
     footer {
       background: var(--primary-color);
       color: var(--text-light);
@@ -525,6 +520,131 @@
       color: rgba(255, 255, 255, 0.6);
       font-size: 0.9rem;
     }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .mobile-menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 82px;
+        left: 0;
+        width: 100%;
+        background: var(--primary-color);
+        flex-direction: column;
+        padding: 0;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+        border-top: 1px solid rgba(255,255,255,0.1);
+      }
+
+      .nav-links.active {
+        max-height: 400px;
+        padding: 1rem 0;
+      }
+
+      .nav-links li {
+        text-align: center;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .nav-links.active li {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .nav-links.active li:nth-child(1) { transition-delay: 0.1s; }
+      .nav-links.active li:nth-child(2) { transition-delay: 0.15s; }
+      .nav-links.active li:nth-child(3) { transition-delay: 0.2s; }
+      .nav-links.active li:nth-child(4) { transition-delay: 0.25s; }
+
+      .nav-links a {
+        display: block;
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .nav-links a:hover {
+        background: rgba(255,255,255,0.1);
+        padding-left: 2.5rem;
+      }
+
+      .nav-links li:last-child a {
+        border-bottom: none;
+      }
+
+      /* Fixed mobile contact hero */
+      .contact-hero {
+        padding: 2rem 0;
+        margin-top: 5rem;
+      }
+
+      .contact-hero-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+        padding: 2rem 1.5rem;
+        margin: 0 1rem;
+      }
+
+      .contact-title {
+        font-size: 2rem;
+      }
+
+      .contact-form-container {
+        padding: 2.5rem 2rem;
+      }
+
+      .form-group {
+        grid-template-columns: 1fr;
+      }
+
+      .form-title {
+        font-size: 1.75rem;
+      }
+
+      .hours-grid {
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contact-hero {
+        margin-top: 6rem;
+        padding: 1.5rem 0;
+      }
+
+      .contact-hero-container {
+        margin: 0 0.5rem;
+        padding: 1.5rem 1rem;
+        gap: 2.5rem;
+      }
+
+      .contact-title {
+        font-size: 1.75rem;
+      }
+
+      .contact-form-container {
+        padding: 2rem 1.5rem;
+      }
+
+      .form-title {
+        font-size: 1.5rem;
+      }
+
+      .hours-grid {
+        gap: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -541,6 +661,9 @@
         <li><a href="projects.html">Projects</a></li>
         <li><a href="contacts.html" class="active">Contact</a></li>
       </ul>
+      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
   </nav>
 
@@ -694,7 +817,47 @@
 
   <!-- FOOTER -->
   <footer>
-    
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-info">
+          <h3>Stellar Tree Management</h3>
+          <p>
+            Professional tree care services you can trust. Serving Calgary and surrounding areas with excellence.
+          </p>
+          <div class="footer-social-links">
+            <a href="#" class="footer-social-icon" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="footer-social-icon" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="footer-social-icon" aria-label="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="footer-social-icon" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-info">
+          <h3>Contact Info</h3>
+          <div class="footer-contact-info">
+            <div class="footer-contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>1932 9a Ave NE, Calgary, Alberta</span>
+            </div>
+            <div class="footer-contact-item">
+              <i class="fas fa-phone"></i>
+              <a href="tel:2505511021">(250) 551-1021</a>
+            </div>
+            <div class="footer-contact-item">
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:michaudsmallenginerepair@outlook.com">michaudsmallenginerepair@outlook.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="footer-bottom">
         <p>&copy; 2025 Stellar Tree Management. All rights reserved.</p>
@@ -703,6 +866,46 @@
   </footer>
 
   <script>
+    // Mobile menu toggle functionality with smooth animations
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const menuIcon = mobileMenuToggle.querySelector('i');
+
+    mobileMenuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      
+      // Toggle icon between bars and times with rotation
+      if (navLinks.classList.contains('active')) {
+        menuIcon.classList.remove('fa-bars');
+        menuIcon.classList.add('fa-times');
+        menuIcon.style.transform = 'rotate(180deg)';
+      } else {
+        menuIcon.classList.remove('fa-times');
+        menuIcon.classList.add('fa-bars');
+        menuIcon.style.transform = 'rotate(0deg)';
+      }
+    });
+
+    // Close mobile menu when clicking on a link
+    navLinks.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+        navLinks.classList.remove('active');
+        menuIcon.classList.remove('fa-times');
+        menuIcon.classList.add('fa-bars');
+        menuIcon.style.transform = 'rotate(0deg)';
+      }
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('nav')) {
+        navLinks.classList.remove('active');
+        menuIcon.classList.remove('fa-times');
+        menuIcon.classList.add('fa-bars');
+        menuIcon.style.transform = 'rotate(0deg)';
+      }
+    });
+
     // Navbar scroll effect
     window.addEventListener("scroll", () => {
       const nav = document.querySelector("nav");
@@ -750,7 +953,7 @@
             .catch(function (error) {
               console.error("FAILED...", error);
               btn.innerHTML = '<i class="fas fa-times"></i> Error Sending';
-              setTimeout(() => {
+              setTimeout () => {
                 btn.innerHTML = originalText;
                 btn.disabled = false;
               }, 3000);

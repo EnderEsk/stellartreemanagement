@@ -110,6 +110,28 @@
             width: 100%;
         }
 
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 8px;
+        }
+
+        .mobile-menu-toggle:hover {
+            color: var(--accent-color);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-toggle i {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         /* Hero Section */
         .hero {
             min-height: 70vh;
@@ -419,8 +441,63 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+
             .nav-links {
-                display: none;
+                position: fixed;
+                top: 82px;
+                left: 0;
+                width: 100%;
+                background: var(--primary-color);
+                flex-direction: column;
+                padding: 0;
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .nav-links.active {
+                max-height: 400px;
+                padding: 1rem 0;
+            }
+
+            .nav-links li {
+                text-align: center;
+                opacity: 0;
+                transform: translateY(-20px);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .nav-links.active li {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .nav-links.active li:nth-child(1) { transition-delay: 0.1s; }
+            .nav-links.active li:nth-child(2) { transition-delay: 0.15s; }
+            .nav-links.active li:nth-child(3) { transition-delay: 0.2s; }
+            .nav-links.active li:nth-child(4) { transition-delay: 0.25s; }
+
+            .nav-links a {
+                display: block;
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .nav-links a:hover {
+                background: rgba(255,255,255,0.1);
+                padding-left: 2.5rem;
+            }
+
+            .nav-links li:last-child a {
+                border-bottom: none;
             }
 
             .hero-title {
@@ -466,6 +543,9 @@
                 <li><a href="projects.html">Projects</a></li>
                 <li><a href="contacts.html">Contact</a></li>
             </ul>
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </nav>
 
@@ -591,6 +671,46 @@
     </footer>
 
     <script>
+        // Mobile menu toggle functionality with smooth animations
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const menuIcon = mobileMenuToggle.querySelector('i');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Toggle icon between bars and times with rotation
+            if (navLinks.classList.contains('active')) {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+                menuIcon.style.transform = 'rotate(180deg)';
+            } else {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+                menuIcon.style.transform = 'rotate(0deg)';
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        navLinks.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                navLinks.classList.remove('active');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+                menuIcon.style.transform = 'rotate(0deg)';
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav')) {
+                navLinks.classList.remove('active');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+                menuIcon.style.transform = 'rotate(0deg)';
+            }
+        });
+
         // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
