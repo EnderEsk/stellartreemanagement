@@ -730,6 +730,7 @@
             <!-- FormSubmit integration -->
             <form action="https://formsubmit.co/3c74fa73e0e8a8d447ade6228b411883" method="POST" class="contact-form">
                 <input type="hidden" name="_next" value="https://enderesk.github.io/stellartreemanagement/index.html">
+                <input type="hidden" name="_captcha" value="false"> <!-- set to true if need -->
                 <div class="form-group">
                     <input type="text" name="name" placeholder="Your Name" class="form-input" required>
                     <input type="email" name="email" placeholder="Your Email" class="form-input" required>
@@ -832,7 +833,6 @@
             }
         });
 
-        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -845,6 +845,43 @@
                 }
             });
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+      const form = document.querySelector('.contact-form');
+      const btn = form.querySelector('.btn-primary');
+      const originalHTML = btn.innerHTML;
+      const originalBg = window.getComputedStyle(btn).backgroundColor;
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const actionUrl = form.action.replace('/formsubmit.co/', '/formsubmit.co/ajax/');
+        const formData = new FormData(form);
+
+        fetch(actionUrl, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          // Show Sent state
+          btn.innerHTML = '<i class="fas fa-paper-plane"></i> Sent!';
+          btn.style.backgroundColor = '#4caf50'; // highlight color
+
+          // Reset after 2 seconds
+          setTimeout(() => {
+            btn.innerHTML = originalHTML;
+            btn.style.backgroundColor = originalBg;
+          }, 2000);
+          form.reset();
+        })
+        .catch(error => {
+          console.error('Form submit error:', error);
+        });
+      });
+    });
     </script>
 </body>
 </html>
