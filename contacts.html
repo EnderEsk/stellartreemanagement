@@ -731,49 +731,58 @@
 
       <!-- RIGHT: Contact Form -->
       <div class="contact-form-container">
-        <h2 class="form-title">Send Us a Message</h2>
-        <p class="form-subtitle">
-          Fill out the form below and we'll get back to you within 24 hours
-          with a free estimate.
-        </p>
+      <h2 class="form-title">Send Us a Message</h2>
+      <p class="form-subtitle">
+        Fill out the form below and we'll get back to you within 24 hours
+        with a free estimate.
+      </p>
 
-        <form class="contact-form" id="contactForm">
-          <div class="form-group">
-            <input
-              type="text"
-              name="user_name"
-              placeholder="Your Name"
-              class="form-input"
-              required
-            />
-            <input
-              type="email"
-              name="user_email"
-              placeholder="Your Email"
-              class="form-input"
-              required
-            />
-          </div>
+      <form
+        class="contact-form"
+        id="contactForm"
+        action="https://formsubmit.co/3c74fa73e0e8a8d447ade6228b411883"
+        method="POST"
+      >
+        <!-- Redirect & disable captcha -->
+        <input type="hidden" name="_next" value="https://enderesk.github.io/stellartreemanagement/index.html">
+        <input type="hidden" name="_captcha" value="false">
 
+        <div class="form-group">
           <input
-            type="tel"
-            name="user_phone"
-            placeholder="Phone Number (Optional)"
+            type="text"
+            name="name"
+            placeholder="Your Name"
             class="form-input"
-          />
-
-          <textarea
-            name="message"
-            placeholder="Tell us about your tree care needs... (Tree removal, trimming, stump grinding, etc.)"
-            class="form-input form-textarea"
             required
-          ></textarea>
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            class="form-input"
+            required
+          />
+        </div>
 
-          <button type="submit" class="btn-primary">
-            <i class="fas fa-paper-plane"></i> Send
-          </button>
-        </form>
-      </div>
+        <input
+          type="tel"
+          name="user_phone"
+          placeholder="Phone Number (Optional)"
+          class="form-input"
+        />
+
+        <textarea
+          name="message"
+          placeholder="Tell us about your tree care needs... (Tree removal, trimming, stump grinding, etc.)"
+          class="form-input form-textarea"
+          required
+        ></textarea>
+
+        <button type="submit" class="btn-primary">
+          <i class="fas fa-paper-plane"></i> Send
+        </button>
+      </form>
+    </div>
     </div>
   </section>
 
@@ -936,6 +945,36 @@
             }, 3000);
             document.getElementById("contactForm").reset();
           }, 2000);
+
+          document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            const btn = form.querySelector('button');
+            const origHTML = btn.innerHTML;
+            const origBg = window.getComputedStyle(btn).backgroundColor;
+
+            form.addEventListener('submit', function(e) {
+              e.preventDefault();
+              const actionUrl = form.action.replace('/formsubmit.co/', '/formsubmit.co/ajax/');
+              const formData = new FormData(form);
+
+              fetch(actionUrl, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+              })
+              .then(res => res.json())
+              .then(data => {
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> Sent!';
+                btn.style.backgroundColor = '#4caf50';
+                setTimeout(() => {
+                  btn.innerHTML = origHTML;
+                  btn.style.backgroundColor = origBg;
+                }, 2000);
+                form.reset();
+              })
+              .catch(err => console.error('Form submit error:', err));
+            });
+          });
 
           /*
           emailjs
