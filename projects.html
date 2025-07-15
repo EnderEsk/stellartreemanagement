@@ -848,7 +848,6 @@
     </footer>
 
     <script>
-        // Mobile menu toggle functionality
         const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
         const navLinks = document.querySelector('.nav-links');
         const menuIcon = mobileMenuToggle.querySelector('i');
@@ -856,7 +855,6 @@
         mobileMenuToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
         
-        // Toggle icon between bars and times
         if (navLinks.classList.contains('active')) {
             menuIcon.classList.remove('fa-bars');
             menuIcon.classList.add('fa-times');
@@ -866,7 +864,6 @@
         }
         });
 
-        // Close mobile menu when clicking on a link
         navLinks.addEventListener('click', (e) => {
         if (e.target.tagName === 'A') {
             navLinks.classList.remove('active');
@@ -875,7 +872,6 @@
         }
         });
 
-        // Close mobile menu when clicking outside
         document.addEventListener('click', (e) => {
         if (!e.target.closest('nav')) {
             navLinks.classList.remove('active');

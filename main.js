@@ -1,6 +1,4 @@
-// Main JavaScript functionality for Stellar Tree Management
-
-class StellarTreeSite {
+/* class StellarTreeSite {
     constructor() {
         this.init();
     }
@@ -13,13 +11,11 @@ class StellarTreeSite {
         this.setupScrollEffects();
     }
 
-    // Navigation functionality
     setupNavigation() {
         const nav = document.querySelector('nav');
         let scrollTimer = null;
 
         window.addEventListener('scroll', () => {
-            // Throttle scroll events
             if (scrollTimer) return;
             
             scrollTimer = setTimeout(() => {
@@ -32,7 +28,6 @@ class StellarTreeSite {
             }, 10);
         });
 
-        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -223,4 +218,4 @@ class StellarTreeSite {
 
     showModal() {
         this.modal.classList.add('active');
-        document.body.style
+        document.body.style */
