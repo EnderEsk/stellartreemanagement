@@ -35,7 +35,7 @@ Stellar Tree Management offers comprehensive arboriculture services tailored to 
 
 ## 🌐 Domain
 
-**https://stellartreemanagement.ca**
+**stellartreemanagement.ca**
 
 ---
 
@@ -46,10 +46,19 @@ We will continue to improve and expand the site with new features, enhanced cont
 
 ---
 
+## 🔄 Changelog
+
+Use this section to track updates and additions. Add new entries at the top:
+
+- **2025-07-19 • v1.0.0**  
+  - Initial launch: About, Projects, Contact pages
+
+---
+
 ## 📞 Contact
 
 For service requests or questions:  
-- **Phone:** (###) ###-####  
-- **Email:** info@stellartreemanagement.ca  
+- **Phone:** (250) 551-1021 
+- **Email:** stellartmanagement@outlook.com 
 - **Location:** Calgary, Alberta  
 
