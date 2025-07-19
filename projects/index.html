@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects - Stellar Tree Management</title>
-    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="icon" type="image/png" href="../images/logo.png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -158,6 +158,25 @@
             color: var(--secondary-color);
             max-width: 600px;
             margin: 0 auto;
+        }
+
+        /* Loading State */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+        }
+
+        .loading i {
+            margin-right: 0.5rem;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         /* Projects Section */
@@ -444,8 +463,8 @@
         }
 
         .modal-details {
-            border-top: 1px solid var(--border-color);
-            padding-top: 2rem;
+            border-top: none; /* Remove the top border since we have it on services section */
+            padding-top: 1rem;
         }
 
         .detail-item {
@@ -453,19 +472,32 @@
             align-items: center;
             gap: 1rem;
             margin-bottom: 1rem;
-            padding: 0.75rem;
-            background: var(--light-gray);
+            padding: 0.75rem 0;
+            background: transparent;
             border-radius: 8px;
         }
 
         .detail-item i {
             color: var(--accent-color);
             width: 20px;
+            flex-shrink: 0;
         }
 
         .detail-item strong {
             color: var(--primary-color);
             margin-right: 0.5rem;
+        }
+
+        .detail-item.services-item,
+        .detail-label {
+            display: none;
+        }
+
+        .detail-item.services-item .detail-label {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
 
         /* Footer - Matching index.html */
@@ -553,6 +585,78 @@
             color: rgba(255, 255, 255, 0.6);
         }
 
+        .services-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .service-tag {
+            background: linear-gradient(135deg, var(--accent-color), #7ab532);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(140, 198, 63, 0.2);
+        }
+
+        .service-tag:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(140, 198, 63, 0.3);
+        }
+
+        .service-tag i {
+            font-size: 0.7rem;
+            opacity: 0.9;
+        }
+
+        .services-section.minimal {
+            margin: 1.5rem 0;
+            padding: 0;
+            border: none;
+        }
+
+        /* Modal Services Tags */
+        .modal-services-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .modal-service-tag {
+            background: linear-gradient(135deg, var(--accent-color), #7ab532);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(140, 198, 63, 0.15);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .modal-service-tag:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(140, 198, 63, 0.25);
+        }
+
+        .modal-service-tag i {
+            font-size: 0.75rem;
+            opacity: 0.9;
+        }
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .mobile-menu-toggle {
@@ -634,6 +738,25 @@
             .values-grid {
                 grid-template-columns: 1fr;
             }
+
+            .modal-content {
+                grid-template-columns: 1fr;
+                max-height: 95vh;
+            }
+
+            .modal-image-section {
+                height: 300px;
+            }
+
+            .service-tag {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.6rem;
+            }
+            
+            .modal-service-tag {
+                font-size: 0.8rem;
+                padding: 0.5rem 0.8rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -655,12 +778,12 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <img src="images/logo.png" alt="Stellar Tree Management Logo" class="logo">
+            <img src="../images/logo.png" alt="Stellar Tree Management Logo" class="logo">
             <ul class="nav-links">
-                <li><a href="./">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="projects.html" class="active">Projects</a></li>
-                <li><a href="contacts.html">Contact</a></li>
+                <li><a href="../">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/projects" class="active">Projects</a></li>
+                <li><a href="/contacts">Contact</a></li>
             </ul>
             <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
                 <i class="fas fa-bars"></i>
@@ -681,84 +804,17 @@
     <!-- Projects Section -->
     <section class="projects-section">
         <div class="projects-container">
-            <div class="projects-grid">
-                <!-- Project 1: Large Oak Tree Removal -->
-                <div class="project-card" 
-                     data-title="Major Forest Cleaning"
-                     data-description="Major forest cleaning, this portion of a landscaped front yard had become heavily over grow by the shrubs, the client wanted the shrubs cut down to restore the intended look, and to allow the shrubs to grow back smaller and more vibrant."
-                     data-duration="5 Hours"
-                     data-location="Northwest Calgary"
-                     data-services="Emergency tree removal, Rigging & crane work, Stump grinding, Site cleanup"
-                     data-images='[
-                         "images/projects/project_1/image_1.jpg",
-                         "images/oak2.jpg",
-                         "images/oak3.jpg"
-                     ]'>
-                    <img src="images/projects/project_1/image_1.jpg" alt="Oak Tree Removal Project" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">Major Forest Cleaning</h3>
-                        <p class="project-description">
-                          Major forest cleaning, this portion of a landscaped front yard had become heavily over grow by the shrubs, the client wanted the shrubs cut down to restore the intended look, and to allow the shrubs to grow back smaller and more vibrant
-                        </p>
-                        <div class="project-meta">
-                            <span><i class="fas fa-calendar"></i> 5 Hours</span>
-                            <span><i class="fas fa-map-marker-alt"></i> Northwest Calgary</span>
-                        </div>
-                    </div>
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Loading state -->
+                <div class="loading">
+                    <i class="fas fa-spinner"></i>
+                    Loading projects...
                 </div>
-
-                <!-- Project 2: Commercial Property Maintenance -->
-                <div class="project-card" 
-                     data-title="60-Year-Old Apple Tree"
-                     data-description="60 year old apple left unpruned for almost 10 years, before and after."
-                     data-duration="1 week"
-                     data-location="Downtown Calgary"
-                     data-services="Tree pruning & trimming, Selective tree removal, Health assessment, Maintenance planning"
-                     data-images='[
-                         "images/projects/project_2/image_1.jpg",
-                         "images/commercial2.jpg"
-                     ]'>
-                    <img src="images/projects/project_2/image_1.jpg" alt="Commercial Tree Maintenance" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">60-Year-Old Apple Tree</h3>
-                        <p class="project-description">
-                          60 year old apple left unpruned for almost 10 years, before and after.
-                        </p>
-                        <div class="project-meta">
-                            <span><i class="fas fa-calendar"></i> 5 Hours</span>
-                            <span><i class="fas fa-map-marker-alt"></i> Calgary</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3:  -->
-                <div class="project-card" 
-                     data-title="Residential Landscape Enhancement"
-                     data-description="Complete transformation of a residential property's landscape through strategic tree removal and expert pruning."
-                     data-duration="2 days"
-                     data-location="Kensington"
-                     data-services="Selective tree removal, Crown thinning, Stump grinding, Landscape consultation"
-                     data-images='[
-                         "images/landscape1.jpg"
-                     ]'>
-                    <img src="images/landscape1.jpg" alt="Landscape Enhancement Project" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">Residential Landscape Enhancement</h3>
-                        <p class="project-description">
-                            Strategic removal of overgrown spruce trees and expert pruning to transform property's landscape, improving natural light and curb appeal.
-                        </p>
-                        <div class="project-meta">
-                            <span><i class="fas fa-calendar"></i> 2 days</span>
-                            <span><i class="fas fa-map-marker-alt"></i> Kensington</span>
-                        </div>
-                    </div>
-                </div>
-
-                
             </div>
         </div>
     </section>
 
+    <!-- Modal -->
     <div class="modal">
         <div class="modal-content">
             <button class="close-modal" aria-label="Close modal"><i class="fas fa-times"></i></button>
@@ -848,50 +904,13 @@
     </footer>
 
     <script>
-        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        const menuIcon = mobileMenuToggle.querySelector('i');
+        // Global variables
+        let projectsData = [];
+        let currentSlide = 0;
+        let images = [];
 
-        mobileMenuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        
-        if (navLinks.classList.contains('active')) {
-            menuIcon.classList.remove('fa-bars');
-            menuIcon.classList.add('fa-times');
-        } else {
-            menuIcon.classList.remove('fa-times');
-            menuIcon.classList.add('fa-bars');
-        }
-        });
-
-        navLinks.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') {
-            navLinks.classList.remove('active');
-            menuIcon.classList.remove('fa-times');
-            menuIcon.classList.add('fa-bars');
-        }
-        });
-
-        document.addEventListener('click', (e) => {
-        if (!e.target.closest('nav')) {
-            navLinks.classList.remove('active');
-            menuIcon.classList.remove('fa-times');
-            menuIcon.classList.add('fa-bars');
-        }
-        });
-
-        // Navbar scroll effect
-        window.addEventListener("scroll", () => {
-        const nav = document.querySelector("nav");
-        if (window.scrollY > 100) {
-            nav.classList.add("nav-scrolled");
-        } else {
-            nav.classList.remove("nav-scrolled");
-        }
-        });
-
-        // Modal & Carousel functionality
-        const projectCards = document.querySelectorAll('.project-card');
+        // DOM elements
+        const projectsGrid = document.getElementById('projectsGrid');
         const modal = document.querySelector('.modal');
         const closeModalBtn = document.querySelector('.close-modal');
         const modalTitle = document.querySelector('.modal-title');
@@ -904,138 +923,333 @@
         const detailLocation = document.querySelector('.detail-location');
         const detailServices = document.querySelector('.detail-services');
 
-        let currentSlide = 0;
-        let images = [];
+        // Mobile menu functionality
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const menuIcon = mobileMenuToggle.querySelector('i');
 
-        // Build carousel items & indicators
-        function createCarouselItems(imageArray) {
-            carouselInner.innerHTML = '';
-            carouselIndicators.innerHTML = '';
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            if (navLinks.classList.contains('active')) {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
 
-            imageArray.forEach((src, idx) => {
-                // Carousel Item
-                const itemDiv = document.createElement('div');
-                itemDiv.classList.add('carousel-item');
-                if (idx === 0) itemDiv.classList.add('active');
+        navLinks.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                navLinks.classList.remove('active');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
 
-                const img = document.createElement('img');
-                img.src = src;
-                img.alt = `Project image ${idx + 1}`;
-                itemDiv.appendChild(img);
-                carouselInner.appendChild(itemDiv);
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav')) {
+                navLinks.classList.remove('active');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
 
-                // Indicator
-                const indicator = document.createElement('div');
-                indicator.classList.add('carousel-indicator');
-                if (idx === 0) indicator.classList.add('active');
-                indicator.dataset.index = idx;
-                carouselIndicators.appendChild(indicator);
+        // Navbar scroll effect
+        window.addEventListener("scroll", () => {
+            const nav = document.querySelector("nav");
+            if (window.scrollY > 100) {
+                nav.classList.add("nav-scrolled");
+            } else {
+                nav.classList.remove("nav-scrolled");
+            }
+        });
 
-                // Clicking an indicator jumps to that slide
-                indicator.addEventListener('click', () => {
-                    goToSlide(idx);
+        // Load projects from JSON
+        async function loadProjects() {
+            try {
+                const response = await fetch('projects.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                projectsData = data.projects;
+                
+                // Sort projects by date (newest first) or by featured status
+                projectsData.sort((a, b) => {
+                    // First sort by featured status
+                    if (a.featured && !b.featured) return -1;
+                    if (!a.featured && b.featured) return 1;
+                    
+                    // Then by date
+                    return new Date(b.date) - new Date(a.date);
                 });
+                
+                renderProjects();
+            } catch (error) {
+                console.error('Error loading projects:', error);
+                showError('Failed to load projects. Please try again later.');
+            }
+        }
+
+        // Render projects to the grid
+        // Continuation from where the code was cut off...
+
+        function renderProjects() {
+            projectsGrid.innerHTML = '';
+            
+            projectsData.forEach((project, index) => {
+                const projectCard = createProjectCard(project, index);
+                projectsGrid.appendChild(projectCard);
             });
         }
 
-        // Show a specific slide by index
-        function goToSlide(index) {
-            const items = document.querySelectorAll('.carousel-item');
-            const indicators = document.querySelectorAll('.carousel-indicator');
-
-            items.forEach((item, idx) => {
-                item.classList.toggle('active', idx === index);
-            });
-
-            indicators.forEach((ind, idx) => {
-                ind.classList.toggle('active', idx === index);
-            });
-
-            currentSlide = index;
+        // Create project card element
+        function createProjectCard(project, index) {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            card.onclick = () => openModal(project);
+            
+            const mainImage = project.images && project.images.length > 0 ? project.images[0] : '../images/placeholder.jpg';
+            
+            card.innerHTML = `
+                <img src="${mainImage}" alt="${project.title}" class="project-image" onerror="this.src='../images/placeholder.jpg'">
+                <div class="project-content">
+                    <h3 class="project-title">${project.title}</h3>
+                    <p class="project-description">${project.description}</p>
+                    <div class="project-meta">
+                        <span><i class="fas fa-clock"></i> ${project.duration}</span>
+                        <span><i class="fas fa-map-marker-alt"></i> ${project.location}</span>
+                    </div>
+                </div>
+            `;
+            
+            return card;
         }
 
-        // Show next slide
-        function showNextSlide() {
-            const total = images.length;
-            let nextIndex = (currentSlide + 1) % total;
-            goToSlide(nextIndex);
+        function createServiceTags(servicesString, tagClass) {
+            if (!servicesString) return '';
+            
+            // Split services by comma and create tags
+            const services = servicesString.split(',').map(service => service.trim());
+            
+            // Service icons mapping
+            const serviceIcons = {
+                'emergency tree removal': 'fas fa-exclamation-triangle',
+                'tree removal': 'fas fa-cut',
+                'tree pruning': 'fas fa-scissors',
+                'trimming': 'fas fa-scissors',
+                'pruning': 'fas fa-scissors',
+                'stump grinding': 'fas fa-cog',
+                'rigging': 'fas fa-link',
+                'crane work': 'fas fa-tools',
+                'cleanup': 'fas fa-broom',
+                'site cleanup': 'fas fa-broom',
+                'health assessment': 'fas fa-stethoscope',
+                'maintenance': 'fas fa-wrench',
+                'maintenance planning': 'fas fa-calendar-check',
+                'crown thinning': 'fas fa-leaf',
+                'selective tree removal': 'fas fa-search',
+                'landscape consultation': 'fas fa-comments'
+            };
+            
+            return services.map(service => {
+                const serviceLower = service.toLowerCase();
+                let icon = 'fas fa-tree'; // default icon
+                
+                // Find matching icon
+                for (const [key, iconClass] of Object.entries(serviceIcons)) {
+                    if (serviceLower.includes(key)) {
+                        icon = iconClass;
+                        break;
+                    }
+                }
+                
+                return `<span class="${tagClass}"><i class="${icon}"></i>${service}</span>`;
+            }).join('');
         }
 
-        // Show previous slide
-        function showPrevSlide() {
-            const total = images.length;
-            let prevIndex = (currentSlide - 1 + total) % total;
-            goToSlide(prevIndex);
+        // Show error message
+        function showError(message) {
+            projectsGrid.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+                    <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--accent-color); margin-bottom: 1rem;"></i>
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Oops! Something went wrong</h3>
+                    <p style="color: var(--secondary-color);">${message}</p>
+                </div>
+            `;
         }
 
-        // Open modal & populate content
-        function openModal(card) {
-            // Parse data attributes
-            const title = card.dataset.title;
-            const description = card.dataset.description;
-            const duration = card.dataset.duration;
-            const location = card.dataset.location;
-            const services = card.dataset.services;
-            images = JSON.parse(card.dataset.images);
-
-            // Populate text
-            modalTitle.textContent = title;
-            modalDescription.textContent = description;
-            detailDuration.textContent = duration;
-            detailLocation.textContent = location;
-            detailServices.textContent = services;
-
-            // Build carousel
-            createCarouselItems(images);
+        // Open modal with project details
+        function openModal(project) {
+            // Set basic modal content
+            modalTitle.textContent = project.title;
+            modalDescription.textContent = project.description;
+            
+            // Create service tags HTML
+            const serviceTagsHtml = createServiceTags(project.services, 'modal-service-tag');
+            
+            // Find the modal text section and rebuild it with better structure
+            const modalTextSection = document.querySelector('.modal-text-section');
+            modalTextSection.innerHTML = `
+                <h2 class="modal-title">${project.title}</h2>
+                <p class="modal-description">${project.description}</p>
+                
+                <!-- Service tags placed here for better flow -->
+                <div class="services-section">
+                    <div class="modal-services-tags">
+                        ${serviceTagsHtml}
+                    </div>
+                </div>
+                
+                <div class="modal-details">
+                    <div class="detail-item">
+                        <i class="fas fa-calendar"></i>
+                        <span><strong>Duration:</strong> ${project.duration}</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span><strong>Location:</strong> ${project.location}</span>
+                    </div>
+                </div>
+            `;
+            
+            // Set up carousel
+            images = project.images || [];
             currentSlide = 0;
-
+            setupCarousel();
+            
             // Show modal
             modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
         // Close modal
         function closeModal() {
             modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
 
-        // Click any card to open its modal
-        projectCards.forEach(card => {
-            card.addEventListener('click', () => openModal(card));
-        });
+        // Setup carousel
+        function setupCarousel() {
+            carouselInner.innerHTML = '';
+            carouselIndicators.innerHTML = '';
+            
+            if (images.length === 0) {
+                carouselInner.innerHTML = '<div class="carousel-item active"><img src="../images/placeholder.jpg" alt="No image available"></div>';
+                return;
+            }
+            
+            // Create carousel items
+            images.forEach((image, index) => {
+                const carouselItem = document.createElement('div');
+                carouselItem.className = `carousel-item ${index === 0 ? 'active' : ''}`;
+                carouselItem.innerHTML = `<img src="${image}" alt="Project image ${index + 1}" onerror="this.src='../images/placeholder.jpg'">`;
+                carouselInner.appendChild(carouselItem);
+            });
+            
+            // Create indicators (only if more than 1 image)
+            if (images.length > 1) {
+                images.forEach((_, index) => {
+                    const indicator = document.createElement('div');
+                    indicator.className = `carousel-indicator ${index === 0 ? 'active' : ''}`;
+                    indicator.onclick = () => goToSlide(index);
+                    carouselIndicators.appendChild(indicator);
+                });
+            }
+            
+            // Show/hide controls based on image count
+            const controls = document.querySelectorAll('.carousel-control');
+            controls.forEach(control => {
+                control.style.display = images.length > 1 ? 'flex' : 'none';
+            });
+        }
 
-        // Close modal when clicking '×'
+        // Go to specific slide
+        function goToSlide(slideIndex) {
+            if (images.length === 0) return;
+            
+            // Remove active class from current slide
+            const currentItem = carouselInner.querySelector('.carousel-item.active');
+            const currentIndicator = carouselIndicators.querySelector('.carousel-indicator.active');
+            
+            if (currentItem) currentItem.classList.remove('active');
+            if (currentIndicator) currentIndicator.classList.remove('active');
+            
+            // Set new slide
+            currentSlide = slideIndex;
+            
+            // Add active class to new slide
+            const newItem = carouselInner.children[currentSlide];
+            const newIndicator = carouselIndicators.children[currentSlide];
+            
+            if (newItem) newItem.classList.add('active');
+            if (newIndicator) newIndicator.classList.add('active');
+        }
+
+        // Next slide
+        function nextSlide() {
+            if (images.length === 0) return;
+            const nextIndex = (currentSlide + 1) % images.length;
+            goToSlide(nextIndex);
+        }
+
+        // Previous slide
+        function prevSlide() {
+            if (images.length === 0) return;
+            const prevIndex = (currentSlide - 1 + images.length) % images.length;
+            goToSlide(prevIndex);
+        }
+
+        // Event listeners
         closeModalBtn.addEventListener('click', closeModal);
-
-        // Close modal when clicking outside modal-content
+        
+        // Close modal when clicking outside
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 closeModal();
             }
         });
-
-        // Next/Prev buttons
-        nextButton.addEventListener('click', (e) => {
-            e.stopPropagation();
-            showNextSlide();
-        });
-
-        prevButton.addEventListener('click', (e) => {
-            e.stopPropagation();
-            showPrevSlide();
-        });
-
-        // Keyboard navigation (Esc to close, arrow keys to switch)
+        
+        // Carousel controls
+        nextButton.addEventListener('click', nextSlide);
+        prevButton.addEventListener('click', prevSlide);
+        
+        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (!modal.classList.contains('active')) return;
-            if (e.key === 'Escape') {
-                closeModal();
+            
+            switch(e.key) {
+                case 'Escape':
+                    closeModal();
+                    break;
+                case 'ArrowLeft':
+                    prevSlide();
+                    break;
+                case 'ArrowRight':
+                    nextSlide();
+                    break;
             }
-            if (e.key === 'ArrowRight') {
-                showNextSlide();
-            }
-            if (e.key === 'ArrowLeft') {
-                showPrevSlide();
-            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProjects();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
         });
     </script>
 </body>

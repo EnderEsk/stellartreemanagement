@@ -1,0 +1,46 @@
+{
+  "projects": [
+    {
+      "id": "major-forest-cleaning",
+      "title": "Major Forest Cleaning",
+      "description": "Major forest cleaning, this portion of a landscaped front yard had become heavily over grow by the shrubs, the client wanted the shrubs cut down to restore the intended look, and to allow the shrubs to grow back smaller and more vibrant.",
+      "duration": "5 Hours",
+      "location": "Northwest Calgary",
+      "services": "Emergency tree removal, Rigging & crane work, Stump grinding, Site cleanup",
+      "images": [
+        "../images/projects/project_1/image_1.jpg"
+      ],
+      "featured": true,
+      "date": "2024-05-02"
+    },
+    {
+      "id": "apple-tree-pruning",
+      "title": "60-Year-Old Apple Tree",
+      "description": "60 year old apple left unpruned for almost 10 years, before and after.",
+      "duration": "5 Hours",
+      "location": "Calgary",
+      "services": "Tree pruning & trimming, Selective tree removal, Health assessment, Maintenance planning",
+      "images": [
+        "../images/projects/project_2/image_1.jpg"
+      ],
+      "featured": true,
+      "date": "2025-05-03"
+    },
+    {
+      "id": "spruce-shape-work",
+      "title": "60-Foot Spruce Sprucing",
+      "description": "Giving a 60 foot spruce a light shape to slow its outward growth and help make the tree grow thicker.",
+      "duration": "2 Hours",
+      "location": "Calgary",
+      "services": "Tree pruning & trimming, Selective tree removal, Health assessment, Maintenance planning",
+      "images": [
+        "../images/projects/project_3/image_1.jpg",
+        "../images/projects/project_3/image_2.jpg",
+        "../images/projects/project_3/image_3.jpg",
+        "../images/projects/project_3/image_4.jpg"
+      ],
+      "featured": true,
+      "date": "2025-05-28"
+    }
+  ]
+}
