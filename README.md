@@ -48,7 +48,14 @@ We will continue to improve and expand the site with new features, enhanced cont
 
 ## 🔄 Changelog
 
-Use this section to track updates and additions. Add new entries at the top:
+Track updates and additions. Add new entries at the top:
+
+
+- **2025-07-19 • v1.1.0**  
+  - Cleaned up the Projects page UI for a more intuitive experience  
+  - Made Projects more dynamic for easy fetching
+  - Refactored Posts to use tags for better organization  
+  - Improved domain structure: URLs no longer display `.html`
 
 - **2025-07-19 • v1.0.0**  
   - Initial launch: About, Projects, Contact pages, Domain
