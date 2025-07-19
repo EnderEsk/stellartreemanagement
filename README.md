@@ -51,7 +51,7 @@ We will continue to improve and expand the site with new features, enhanced cont
 Use this section to track updates and additions. Add new entries at the top:
 
 - **2025-07-19 • v1.0.0**  
-  - Initial launch: About, Projects, Contact pages
+  - Initial launch: About, Projects, Contact pages, Domain
 
 ---
 
