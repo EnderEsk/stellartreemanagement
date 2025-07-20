@@ -439,6 +439,38 @@
             color: rgba(255, 255, 255, 0.6);
         }
 
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1rem; /* Reduced padding slightly */
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-left: 4px solid var(--accent-color);
+            font-size: 0.85rem; 
+            font-weight: 500;
+            z-index: 1100;
+            transform: translateX(350px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            max-width: 250px; /* Reduced max width */
+        }
+
+        .notification.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .notification i {
+            color: var(--accent-color);
+            font-size: 1rem;
+        }
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .mobile-menu-toggle {
@@ -630,16 +662,16 @@
                         Professional tree care services you can trust. Serving Calgary and surrounding areas with excellence.
                     </p>
                     <div class="social-links">
-                        <a href="#" class="social-icon" aria-label="Instagram">
+                        <a href="https://instagram.com/stellartreemanagement" target="_blank" class="social-icon" aria-label="Instagram">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="social-icon" aria-label="Facebook">
+                        <a href="https://www.facebook.com/people/Stellar-Tree-Management/61575256618222/#" target="_blank" class="social-icon" aria-label="Facebook" data-social="Facebook">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" class="social-icon" aria-label="Twitter">
-                            <i class="fab fa-twitter"></i>
+                        <a href="#" class="social-icon coming-soon" aria-label="Twitter" data-social="Twitter">
+                            <i class="fa-brands fa-twitter"></i>
                         </a>
-                        <a href="#" class="social-icon" aria-label="LinkedIn">
+                        <a href="https://www.linkedin.com/in/stephane-michaud-a4a897368/?originalSubdomain=ca" target="_blank" class="social-icon" aria-label="LinkedIn" data-social="LinkedIn">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
                     </div>
@@ -734,6 +766,45 @@
                 }
             });
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const comingSoonIcons = document.querySelectorAll('.social-icon.coming-soon');
+            
+            comingSoonIcons.forEach(icon => {
+                icon.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const socialName = this.getAttribute('data-social');
+                    showNotification(`${socialName} - Coming Soon!`);
+                });
+            });
+        });
+        function showNotification(message) {
+            // Remove existing notification if any
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // Create notification
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerHTML = `<i class="fas fa-info-circle"></i>${message}`;
+            
+            // Add to body
+            document.body.appendChild(notification);
+            
+            // Show notification
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 400);
+            }, 3000);
+        }
     </script>
 </body>
 </html>

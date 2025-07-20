@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stellar Tree Management</title>
-    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="icon" type="image/x-icon" href="images/logo.ico">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2a2a2a;      
-            --accent-color: #8cc63f;       
-            --secondary-color: #5a5a5a;   
-            --bg-color: #f8f9fa;           
+            --primary-color: #2a2a2a;
+            --accent-color: #8cc63f;
+            --secondary-color: #5a5a5a;
+            --bg-color: #f8f9fa;
             --text-color: #ffffff;
             --light-gray: #f8fafc;
             --border-color: #e5e7eb;
@@ -60,12 +62,6 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-        }
-
-        .nav-scrolled {
-            background: rgba(42, 42, 42, 0.884); 
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 15px rgba(0,0,0,0.2);
         }
 
         .logo {
@@ -141,7 +137,8 @@
             background: linear-gradient(135deg, var(--light-gray) 0%, #ffffff 100%);
             position: relative;
             overflow: hidden;
-            padding-top: 80px; /* Add padding for fixed navbar */
+            padding-top: 80px;
+            /* Add padding for fixed navbar */
         }
 
         .hero-container {
@@ -155,7 +152,7 @@
             background: var(--primary-color);
             border-radius: 20px;
             border: 2px solid var(--border-color);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
         }
 
         .hero-content {
@@ -244,7 +241,7 @@
             height: 500px;
             object-fit: cover;
             border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
         }
 
         /* Stats Section */
@@ -336,7 +333,7 @@
 
         .service-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
         .service-icon {
@@ -492,6 +489,40 @@
             transform: translateY(-1px);
         }
 
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1rem;
+            /* Reduced padding slightly */
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-left: 4px solid var(--accent-color);
+            font-size: 0.85rem;
+            font-weight: 500;
+            z-index: 1100;
+            transform: translateX(350px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            max-width: 250px;
+            /* Reduced max width */
+        }
+
+        .notification.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .notification i {
+            color: var(--accent-color);
+            font-size: 1rem;
+        }
+
         .footer-bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 2rem;
@@ -517,8 +548,8 @@
                 max-height: 0;
                 overflow: hidden;
                 transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-                border-top: 1px solid rgba(255,255,255,0.1);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
             }
 
             .nav-links.active {
@@ -538,21 +569,32 @@
                 transform: translateY(0);
             }
 
-            .nav-links.active li:nth-child(1) { transition-delay: 0.1s; }
-            .nav-links.active li:nth-child(2) { transition-delay: 0.15s; }
-            .nav-links.active li:nth-child(3) { transition-delay: 0.2s; }
-            .nav-links.active li:nth-child(4) { transition-delay: 0.25s; }
+            .nav-links.active li:nth-child(1) {
+                transition-delay: 0.1s;
+            }
+
+            .nav-links.active li:nth-child(2) {
+                transition-delay: 0.15s;
+            }
+
+            .nav-links.active li:nth-child(3) {
+                transition-delay: 0.2s;
+            }
+
+            .nav-links.active li:nth-child(4) {
+                transition-delay: 0.25s;
+            }
 
             .nav-links a {
                 display: block;
                 padding: 1rem 2rem;
                 font-size: 1.1rem;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
                 transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             }
 
             .nav-links a:hover {
-                background: rgba(255,255,255,0.1);
+                background: rgba(255, 255, 255, 0.1);
                 padding-left: 2.5rem;
             }
 
@@ -563,7 +605,8 @@
             /* Fixed mobile hero section */
             .hero {
                 min-height: 100vh;
-                padding-top: 120px; /* Increased padding for mobile */
+                padding-top: 120px;
+                /* Increased padding for mobile */
                 padding-bottom: 2rem;
             }
 
@@ -571,8 +614,10 @@
                 grid-template-columns: 1fr;
                 gap: 3rem;
                 text-align: center;
-                margin: 0 1rem; /* Add side margins */
-                padding: 2rem 1.5rem; /* Adjust padding */
+                margin: 0 1rem;
+                /* Add side margins */
+                padding: 2rem 1.5rem;
+                /* Adjust padding */
             }
 
             .company-name {
@@ -605,7 +650,8 @@
 
         @media (max-width: 480px) {
             .hero {
-                padding-top: 140px; /* Even more padding for smaller screens */
+                padding-top: 140px;
+                /* Even more padding for smaller screens */
             }
 
             .hero-container {
@@ -627,6 +673,7 @@
         }
     </style>
 </head>
+
 <body>
     <nav>
         <div class="nav-container">
@@ -652,7 +699,8 @@
                 </div>
                 <h1 class="company-name">Stellar Tree Management</h1>
                 <p class="company-description">
-                    Professional tree removal and maintenance services in Calgary. From safe tree felling to precision pruning and stump grinding, we keep your property safe, clean, and beautiful.
+                    Professional tree removal and maintenance services in Calgary. From safe tree felling to precision
+                    pruning and stump grinding, we keep your property safe, clean, and beautiful.
                 </p>
                 <div class="cta-buttons">
                     <a href="#contact" class="btn-primary">
@@ -686,33 +734,37 @@
             <div class="section-header">
                 <h2 class="section-title">Our Services</h2>
                 <p class="section-subtitle">
-                    Comprehensive tree care solutions for residential and commercial properties in Calgary and surrounding areas.
+                    Comprehensive tree care solutions for residential and commercial properties in Calgary and
+                    surrounding areas.
                 </p>
             </div>
-            
+
             <div class="services">
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-tree"></i>
                     </div>
                     <h3>Tree Removal</h3>
-                    <p>Safe and efficient tree cutting and removal services for hazardous, dead, or unwanted trees on your property. Fully insured and certified for peace of mind.</p>
+                    <p>Safe and efficient tree cutting and removal services for hazardous, dead, or unwanted trees on
+                        your property. Fully insured and certified for peace of mind.</p>
                 </div>
-                
+
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-scissors"></i>
                     </div>
                     <h3>Trimming & Pruning</h3>
-                    <p>Maintain the health and appearance of your trees with professional trimming, pruning, and crown thinning to encourage growth and prevent damage.</p>
+                    <p>Maintain the health and appearance of your trees with professional trimming, pruning, and crown
+                        thinning to encourage growth and prevent damage.</p>
                 </div>
-                
+
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-screwdriver-wrench"></i>
                     </div>
                     <h3>Stump Grinding</h3>
-                    <p>We remove unsightly and hazardous stumps with powerful grinding tools, leaving your yard clean and ready for new landscaping or use.</p>
+                    <p>We remove unsightly and hazardous stumps with powerful grinding tools, leaving your yard clean
+                        and ready for new landscaping or use.</p>
                 </div>
             </div>
         </div>
@@ -723,10 +775,11 @@
             <div class="section-header">
                 <h2 class="section-title">Get In Touch</h2>
                 <p class="section-subtitle">
-                    Need a tree removed or trimmed? Contact us today for expert service in Calgary and surrounding areas.
+                    Need a tree removed or trimmed? Contact us today for expert service in Calgary and surrounding
+                    areas.
                 </p>
             </div>
-            
+
             <!-- FormSubmit integration -->
             <form action="https://formsubmit.co/4d8a67bb4a7db2bb7b2fe60d65b7ef60" method="POST" class="contact-form">
                 <input type="hidden" name="_next" value="https://enderesk.github.io/stellartreemanagement/index.html">
@@ -735,7 +788,8 @@
                     <input type="text" name="name" placeholder="Your Name" class="form-input" required>
                     <input type="email" name="email" placeholder="Your Email" class="form-input" required>
                 </div>
-                <textarea name="message" placeholder="Tell us about your tree care needs..." class="form-input form-textarea" required></textarea>
+                <textarea name="message" placeholder="Tell us about your tree care needs..."
+                    class="form-input form-textarea" required></textarea>
                 <button type="submit" class="btn-primary">
                     <i class="fas fa-paper-plane"></i>
                     Send Message
@@ -750,24 +804,28 @@
                 <div class="footer-info">
                     <h3>Stellar Tree Management</h3>
                     <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 1rem;">
-                        Professional tree care services you can trust. Serving Calgary and surrounding areas with excellence.
+                        Professional tree care services you can trust. Serving Calgary and surrounding areas with
+                        excellence.
                     </p>
                     <div class="social-links">
-                        <a href="#" class="social-icon" aria-label="Instagram">
+                        <a href="https://instagram.com/stellartreemanagement" target="_blank" class="social-icon"
+                            aria-label="Instagram">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="social-icon" aria-label="Facebook">
+                        <a href="https://www.facebook.com/people/Stellar-Tree-Management/61575256618222/#"
+                            target="_blank" class="social-icon" aria-label="Facebook" data-social="Facebook">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" class="social-icon" aria-label="Twitter">
-                            <i class="fab fa-twitter"></i>
+                        <a href="#" class="social-icon coming-soon" aria-label="Twitter" data-social="Twitter">
+                            <i class="fa-brands fa-twitter"></i>
                         </a>
-                        <a href="#" class="social-icon" aria-label="LinkedIn">
+                        <a href="https://www.linkedin.com/in/stephane-michaud-a4a897368/?originalSubdomain=ca"
+                            target="_blank" class="social-icon" aria-label="LinkedIn" data-social="LinkedIn">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="footer-info">
                     <h3>Contact Info</h3>
                     <div class="contact-info">
@@ -786,7 +844,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <p>&copy; 2025 Stellar Tree Management. All rights reserved.</p>
             </div>
@@ -800,7 +858,7 @@
 
         mobileMenuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            
+
             // Toggle icon between bars and times with rotation
             if (navLinks.classList.contains('active')) {
                 menuIcon.classList.remove('fa-bars');
@@ -846,42 +904,83 @@
             });
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-      const form = document.querySelector('.contact-form');
-      const btn = form.querySelector('.btn-primary');
-      const originalHTML = btn.innerHTML;
-      const originalBg = window.getComputedStyle(btn).backgroundColor;
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('.contact-form');
+            const btn = form.querySelector('.btn-primary');
+            const originalHTML = btn.innerHTML;
+            const originalBg = window.getComputedStyle(btn).backgroundColor;
 
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const actionUrl = form.action.replace('/formsubmit.co/', '/formsubmit.co/ajax/');
-        const formData = new FormData(form);
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const actionUrl = form.action.replace('/formsubmit.co/', '/formsubmit.co/ajax/');
+                const formData = new FormData(form);
 
-        fetch(actionUrl, {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
-          }
-        })
-        .then(response => response.json())
-        .then(data => {
-          // Show Sent state
-          btn.innerHTML = '<i class="fas fa-paper-plane"></i> Sent!';
-          btn.style.backgroundColor = '#4caf50'; // highlight color
+                fetch(actionUrl, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Show Sent state
+                        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Sent!';
+                        btn.style.backgroundColor = '#4caf50'; // highlight color
 
-          // Reset after 2 seconds
-          setTimeout(() => {
-            btn.innerHTML = originalHTML;
-            btn.style.backgroundColor = originalBg;
-          }, 2000);
-          form.reset();
-        })
-        .catch(error => {
-          console.error('Form submit error:', error);
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            btn.innerHTML = originalHTML;
+                            btn.style.backgroundColor = originalBg;
+                        }, 2000);
+                        form.reset();
+                    })
+                    .catch(error => {
+                        console.error('Form submit error:', error);
+                    });
+            });
         });
-      });
-    });
+        document.addEventListener('DOMContentLoaded', function () {
+            const comingSoonIcons = document.querySelectorAll('.social-icon.coming-soon');
+
+            comingSoonIcons.forEach(icon => {
+                icon.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const socialName = this.getAttribute('data-social');
+                    showNotification(`${socialName} - Coming Soon!`);
+                });
+            });
+        });
+        function showNotification(message) {
+            // Remove existing notification if any
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+
+            // Create notification
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerHTML = `<i class="fas fa-info-circle"></i>${message}`;
+
+            // Add to body
+            document.body.appendChild(notification);
+
+            // Show notification
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+
+            // Hide and remove notification after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 400);
+            }, 3000);
+        }
     </script>
 </body>
+
 </html>
