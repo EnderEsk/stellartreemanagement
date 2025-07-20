@@ -50,6 +50,13 @@ We will continue to improve and expand the site with new features, enhanced cont
 
 Track updates and additions. Add new entries at the top:
 
+- **2025-07-20 • v1.1.5** 
+- Updated social icons:
+  - Added a notification display for icons without a connected social link
+  - Quality-of-life improvement for users navigating incomplete profiles
+- Organized stylesheet for the Projects section to streamline future development
+- Replaced the site logo from `.png` to `.ico`:
+  - Enables proper favicon rendering in Google search results
 
 - **2025-07-19 • v1.1.0**  
   - Cleaned up the Projects page UI for a more intuitive experience  
