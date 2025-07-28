@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Admin - Stellar Tree Management</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .admin-header {
+            background: #2a2a2a;
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .admin-header h1 {
+            font-size: 1.5rem;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-card i {
+            font-size: 2rem;
+            color: #8cc63f;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2a2a2a;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .bookings-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: #8cc63f;
+            color: white;
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .filters {
+            padding: 1rem 1.5rem;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-group label {
+            font-weight: 500;
+            color: #555;
+        }
+
+        .filter-group select,
+        .filter-group input {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        .refresh-btn {
+            background: #8cc63f;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+
+        .refresh-btn:hover {
+            background: #7ab82d;
+        }
+
+        .bookings-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .bookings-table th,
+        .bookings-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .bookings-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .bookings-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-confirmed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-completed {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .status-cancelled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-small {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.8rem;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .btn-small:hover {
+            opacity: 0.8;
+        }
+
+        .btn-confirm {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-cancel {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-complete {
+            background: #007bff;
+            color: white;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .no-bookings {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .admin-container {
+                padding: 0 1rem;
+            }
+
+            .filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .bookings-table {
+                font-size: 0.8rem;
+            }
+
+            .bookings-table th,
+            .bookings-table td {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="admin-header">
+        <h1><i class="fas fa-calendar-check"></i> Booking Management - Stellar Tree Management</h1>
+    </header>
+
+    <div class="admin-container">
+        <!-- Statistics -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <i class="fas fa-clock"></i>
+                <div class="stat-number" id="pending-count">-</div>
+                <div class="stat-label">Pending Bookings</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-check-circle"></i>
+                <div class="stat-number" id="confirmed-count">-</div>
+                <div class="stat-label">Confirmed Today</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-dollar-sign"></i>
+                <div class="stat-number" id="revenue-count">$-</div>
+                <div class="stat-label">Today's Revenue</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-calendar-day"></i>
+                <div class="stat-number" id="total-count">-</div>
+                <div class="stat-label">Total Bookings</div>
+            </div>
+        </div>
+
+        <!-- Bookings Table -->
+        <div class="bookings-section">
+            <div class="section-header">
+                <i class="fas fa-list"></i> All Bookings
+            </div>
+
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="status-filter">Status:</label>
+                    <select id="status-filter">
+                        <option value="">All</option>
+                        <option value="pending">Pending</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="completed">Completed</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="date-filter">Date:</label>
+                    <input type="date" id="date-filter">
+                </div>
+                <div class="filter-group">
+                    <label for="service-filter">Service:</label>
+                    <select id="service-filter">
+                        <option value="">All Services</option>
+                        <option value="tree-removal">Tree Removal</option>
+                        <option value="tree-trimming">Tree Trimming</option>
+                        <option value="stump-grinding">Stump Grinding</option>
+                        <option value="emergency">Emergency</option>
+                        <option value="consultation">Consultation</option>
+                        <option value="maintenance">Maintenance</option>
+                    </select>
+                </div>
+                <button class="refresh-btn" onclick="loadBookings()">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+            </div>
+
+            <div id="bookings-content">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i> Loading bookings...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let allBookings = [];
+
+        // Load bookings when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadBookings();
+            
+            // Set up filter event listeners
+            document.getElementById('status-filter').addEventListener('change', filterBookings);
+            document.getElementById('date-filter').addEventListener('change', filterBookings);
+            document.getElementById('service-filter').addEventListener('change', filterBookings);
+        });
+
+        async function loadBookings() {
+            try {
+                // For demo purposes, we'll load from localStorage
+                // In production, you'd fetch from your PHP backend
+                const localBookings = JSON.parse(localStorage.getItem('treeBookings') || '[]');
+                
+                // Simulate API call
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                allBookings = localBookings;
+                updateStatistics();
+                displayBookings(allBookings);
+            } catch (error) {
+                console.error('Error loading bookings:', error);
+                document.getElementById('bookings-content').innerHTML = `
+                    <div class="no-bookings">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: #dc3545; margin-bottom: 1rem;"></i>
+                        <p>Error loading bookings. Please try again.</p>
+                    </div>
+                `;
+            }
+        }
+
+        function updateStatistics() {
+            const today = new Date().toISOString().split('T')[0];
+            
+            const pendingCount = allBookings.filter(b => b.status === 'pending' || !b.status).length;
+            const confirmedToday = allBookings.filter(b => 
+                (b.status === 'confirmed' || b.status === 'completed') && 
+                b.date === today
+            ).length;
+            
+            const todayRevenue = allBookings
+                .filter(b => b.date === today && (b.status === 'confirmed' || b.status === 'completed'))
+                .reduce((sum, b) => sum + (b.service?.price || 0), 0);
+            
+            document.getElementById('pending-count').textContent = pendingCount;
+            document.getElementById('confirmed-count').textContent = confirmedToday;
+            document.getElementById('revenue-count').textContent = `$${todayRevenue}`;
+            document.getElementById('total-count').textContent = allBookings.length;
+        }
+
+        function displayBookings(bookings) {
+            const container = document.getElementById('bookings-content');
+            
+            if (bookings.length === 0) {
+                container.innerHTML = `
+                    <div class="no-bookings">
+                        <i class="fas fa-calendar-times" style="font-size: 2rem; color: #666; margin-bottom: 1rem;"></i>
+                        <p>No bookings found.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const tableHTML = `
+                <table class="bookings-table">
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Customer</th>
+                            <th>Service</th>
+                            <th>Date & Time</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${bookings.map(booking => `
+                            <tr>
+                                <td><strong>${booking.id || 'N/A'}</strong></td>
+                                <td>
+                                    <div><strong>${booking.customer?.name || 'N/A'}</strong></div>
+                                    <div style="font-size: 0.8rem; color: #666;">
+                                        ${booking.customer?.phone || 'N/A'}
+                                    </div>
+                                    <div style="font-size: 0.8rem; color: #666;">
+                                        ${booking.customer?.email || 'N/A'}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div><strong>${booking.service?.name || 'N/A'}</strong></div>
+                                    <div style="font-size: 0.8rem; color: #666;">
+                                        ${booking.customer?.address || 'N/A'}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div><strong>${formatDate(booking.date)}</strong></div>
+                                    <div style="color: #666;">${booking.time?.display || 'N/A'}</div>
+                                </td>
+                                <td><strong>$${booking.service?.price || 0}+</strong></td>
+                                <td>
+                                    <span class="status-badge status-${booking.status || 'pending'}">
+                                        ${booking.status || 'pending'}
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="action-buttons">
+                                        ${booking.status !== 'confirmed' && booking.status !== 'completed' ? 
+                                            `<button class="btn-small btn-confirm" onclick="updateBookingStatus('${booking.id}', 'confirmed')">
+                                                <i class="fas fa-check"></i>
+                                            </button>` : ''
+                                        }
+                                        ${booking.status === 'confirmed' ? 
+                                            `<button class="btn-small btn-complete" onclick="updateBookingStatus('${booking.id}', 'completed')">
+                                                <i class="fas fa-flag-checkered"></i>
+                                            </button>` : ''
+                                        }
+                                        ${booking.status !== 'cancelled' ? 
+                                            `<button class="btn-small btn-cancel" onclick="updateBookingStatus('${booking.id}', 'cancelled')">
+                                                <i class="fas fa-times"></i>
+                                            </button>` : ''
+                                        }
+                                    </div>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+
+            container.innerHTML = tableHTML;
+        }
+
+        function filterBookings() {
+            const statusFilter = document.getElementById('status-filter').value;
+            const dateFilter = document.getElementById('date-filter').value;
+            const serviceFilter = document.getElementById('service-filter').value;
+
+            let filtered = allBookings;
+
+            if (statusFilter) {
+                filtered = filtered.filter(b => (b.status || 'pending') === statusFilter);
+            }
+
+            if (dateFilter) {
+                filtered = filtered.filter(b => b.date === dateFilter);
+            }
+
+            if (serviceFilter) {
+                filtered = filtered.filter(b => b.service?.type === serviceFilter);
+            }
+
+            displayBookings(filtered);
+        }
+
+        function updateBookingStatus(bookingId, newStatus) {
+            if (!confirm(`Are you sure you want to mark this booking as ${newStatus}?`)) {
+                return;
+            }
+
+            // Update in localStorage (in production, you'd send to your backend)
+            const bookingIndex = allBookings.findIndex(b => b.id === bookingId);
+            if (bookingIndex !== -1) {
+                allBookings[bookingIndex].status = newStatus;
+                localStorage.setItem('treeBookings', JSON.stringify(allBookings));
+                
+                // Refresh display
+                updateStatistics();
+                filterBookings();
+                
+                // Show success message
+                showNotification(`Booking ${bookingId} updated to ${newStatus}`, 'success');
+            }
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return 'N/A';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', {
+                weekday: 'short',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#28a745' : '#007bff'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 5px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 1000;
+                font-weight: 500;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
