@@ -1,104 +1,78 @@
-# Stellar Tree Management
+# Stellar Tree Management 🌲
 
-A professional tree service booking system with admin panel for managing appointments.
+> Professional tree removal and maintenance services in Calgary.  
+> From safe tree felling to precision pruning and stump grinding, we keep your property safe, clean, and beautiful.
 
-## Features
+---
 
-### Booking System
-- **Service Selection**: Choose from Tree Removal, Trimming & Pruning, Stump Grinding, or Emergency Service
-- **Date & Time Selection**: Interactive calendar with real-time availability
-- **Contact Information**: Full name, email, phone number, and service address
-- **Address Autocomplete**: Google Places API integration for accurate address formatting
-- **Booking Summary**: Review all details before confirmation
-- **Email Confirmation**: Automatic confirmation emails sent to customers
+## 📋 Table of Contents
 
-### Admin Panel
-- **Dashboard**: Overview of all bookings with statistics
-- **Booking Management**: View, confirm, complete, cancel, or move bookings
-- **Calendar View**: Visual calendar interface for managing appointments
-- **Customer Information**: Access to customer contact details and service addresses
-- **Notes System**: Add internal notes to bookings
-- **Date Blocking**: Block specific dates from bookings
+1. [About](#about)  
+2. [Pages](#pages)  
+3. [Domain](#domain)  
+4. [Versioning](#versioning)  
+5. [Contact](#contact)  
 
-## Setup Instructions
+---
 
-### Prerequisites
-- Node.js (v14 or higher)
-- npm or yarn
+## 🔎 About
 
-### Installation
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Start the server: `npm start`
-4. Access the application at `http://localhost:3000`
+Stellar Tree Management offers comprehensive arboriculture services tailored to Calgary’s unique urban and suburban environments. Our team specializes in:
 
-### Address Autocomplete Setup
-The system uses the Geoapify API for address search and autocomplete functionality. The API key is already configured in the booking form.
+- **Tree Removal & Safe Felling** – Expert assessment and controlled removal of hazardous or unwanted trees.  
+- **Precision Pruning** – Health-focused trimming to encourage growth, reduce risk, and enhance appearance.  
+- **Stump Grinding** – Effective removal of unsightly stumps, preventing regrowth and improving site usability.  
 
-**Features:**
-- Real-time address suggestions as you type
-- Canada address filtering for better accuracy
-- House number and street-level search capabilities
-- Formatted address output
-- Fallback to manual input if API is unavailable
+---
 
-**Note**: If you need to use a different API key, update the `GEOAPIFY_API_KEY` variable in `booking/index.html`.
+## 📂 Pages
 
-### Admin Access
-- **URL**: `/admin`
-- **Default Password**: `stellar2024`
-- **Configuration**: Update password in `admin-config.js`
+- **About** — Company history, mission, and team credentials.  
+- **Projects** — Showcase of recent removals, prunings, and site clean-ups.  
+- **Contact** — Easy request form, phone, and email for quotes and inquiries.  
 
-## File Structure
+---
 
-```
-stellartreemanagement/
-├── booking/                 # Booking system
-│   ├── index.html          # Booking form
-│   ├── booking.js          # Booking logic
-│   └── booking.css         # Booking styles
-├── admin.html              # Admin panel
-├── server.js               # Backend API
-├── bookings.db             # SQLite database
-└── images/                 # Static assets
-```
+## 🌐 Domain
 
-## API Endpoints
+**stellartreemanagement.ca**
 
-- `GET /api/bookings` - Get all bookings
-- `POST /api/bookings` - Create new booking
-- `PATCH /api/bookings/:id/status` - Update booking status
-- `GET /api/availability` - Get availability data
-- `GET /api/blocked-dates` - Get blocked dates
-- `POST /api/blocked-dates` - Block/unblock dates
+---
 
-## Database Schema
+## 🏷 Versioning
 
-### Bookings Table
-- `id` - Primary key
-- `booking_id` - Unique booking identifier
-- `service` - Service type
-- `date` - Booking date
-- `time` - Booking time
-- `name` - Customer name
-- `email` - Customer email
-- `phone` - Customer phone number
-- `address` - Service address
-- `notes` - Additional notes
-- `status` - Booking status (pending/confirmed/completed/cancelled)
-- `created_at` - Creation timestamp
-- `updated_at` - Last update timestamp
+This is **v1.0.0** of the Stellar Tree Management website.  
+We will continue to improve and expand the site with new features, enhanced content, and client feedback.
 
-## Recent Updates
+---
 
-### Phone and Address Integration
-- Added phone number field with automatic formatting
-- Added service address field with Google Places autocomplete
-- Updated admin panel to display phone and address information
-- Enhanced booking cards and detail views
-- Improved form validation for new fields
+## 🔄 Changelog
 
-## License
+Track updates and additions. Add new entries at the top:
 
-This project is licensed under the MIT License.
+- **2025-07-20 • v1.1.5** 
+- Updated social icons:
+  - Added a notification display for icons without a connected social link
+  - Quality-of-life improvement for users navigating incomplete profiles
+- Organized stylesheet for the Projects section to streamline future development
+- Replaced the site logo from `.png` to `.ico`:
+  - Enables proper favicon rendering in Google search results
+
+- **2025-07-19 • v1.1.0**  
+  - Cleaned up the Projects page UI for a more intuitive experience  
+  - Made Projects more dynamic for easy fetching
+  - Refactored Posts to use tags for better organization  
+  - Improved domain structure: URLs no longer display `.html`
+
+- **2025-07-19 • v1.0.0**  
+  - Initial launch: About, Projects, Contact pages, Domain
+
+---
+
+## 📞 Contact
+
+For service requests or questions:  
+- **Phone:** (250) 551-1021 
+- **Email:** stellartmanagement@outlook.com 
+- **Location:** Calgary, Alberta  
 
